@@ -33,22 +33,22 @@ reg.fit(x_train,y_train)
 print(reg.coef_)
 
 #打印截距项
-print('intercept = %f' % reg.intercept_)
+print('intercept =', reg.intercept_)
 
 #模型的拟合优度
-print('score = %f' % reg.score(x_train,y_train)) 
+print('score =', reg.score(x_train,y_train)) 
 
 #测试集的预测
 y_predict=reg.predict(x_test)
 
 #输出测试集mse
-print('mse = %f' % mean_squared_error(y_test,y_predict)) 
+print('mse =', mean_squared_error(y_test,y_predict)) 
 
 plt.figure(figsize=(12, 6))
 plt.gca().set_facecolor('whitesmoke')
 plt.plot(range(len(y_predict)), y_predict, '--o', color='gray', label='predict')
 plt.plot(range(len(y_predict)), y_test, '-*', color='peru', label='test')
-plt.title('train_size=0.75', fontsize=18)
+plt.title('LinearRegression', fontsize=18)
 plt.xlabel('The Number of y', fontsize=13)
 plt.ylabel('The Value of y', fontsize=13)
 plt.grid(linestyle='--', linewidth=1, alpha=0.8)
