@@ -23,7 +23,7 @@ y = data.y # 定义测试值列
 # paiplot=sn.pairplot(data, x_vars=['x1', 'x2' ,'x3' ,'x4' ,'x5' ,'x6' ,'x7' ,'x8' ,'x9'], y_vars='y', height=6, kind='reg')
 # plt.show()
 
-x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.75, random_state=100, stratify=None)  #划分数据集
+x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.75, random_state=10, stratify=None)  #划分数据集
 
 kernel = C(1.0, (1e-3, 1e3)) * RBF(10, (1e-2, 1e2))
 reg = GaussianProcessRegressor(kernel=kernel, n_restarts_optimizer=9)
