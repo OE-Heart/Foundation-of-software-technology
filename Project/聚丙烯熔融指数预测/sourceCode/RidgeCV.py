@@ -6,25 +6,30 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import Ridge,RidgeCV
 from sklearn.metrics import mean_squared_error #均方误差
 
-IO = "D:\大二上\软件技术基础\Project\聚丙烯熔融指数预测\data.xls"
+IO = "D:\大二上\软件技术基础\Project\聚丙烯熔融指数预测\data.xls"  #数据文件路径
 data = pd.read_excel(io=IO)
 features = ['x1', 'x2', 'x3', 'x4', 'x5', 'x6', 'x7', 'x8', 'x9'] 
 x = data[features] # 定义参数列 
 y = data['y'] 
 y = data.y # 定义测试值列
+value = ['x1', 'x2', 'x3', 'x4', 'x5', 'x6', 'x7', 'x8', 'x9', 'y']
 
 # 数据的描述统计
-# print(data.describe())
+print(data[value].describe())
+
+# 缺失值检验
+print(data[value][data[value].isnull()==True].count())
 
 # 数据相关性举证
-# print(data.corr())
+print(data[value].corr())
 
-# paiplot=sn.pairplot(data, x_vars=['x1', 'x2' ,'x3' ,'x4' ,'x5' ,'x6' ,'x7' ,'x8' ,'x9'], y_vars='y', height=6, kind='reg')
-# plt.show()
+# 数据可视化输出
+paiplot=sn.pairplot(data, x_vars=['x1', 'x2' ,'x3' ,'x4' ,'x5' ,'x6' ,'x7' ,'x8' ,'x9'], y_vars='y', height=6, kind='reg')
+plt.show()
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.75, random_state=100, stratify=None)  #划分数据集
 
-reg = RidgeCV(alphas=[0.1, 1.0, 10.0])  # 通过RidgeCV可以设置多个参数值，算法使用交叉验证获取最佳参数值
+reg = RidgeCV(alphas=[0.1, 1.0, 10.0, 15.0, 20.0, 25.0, 30.0])  # 通过RidgeCV可以设置多个参数值，算法使用交叉验证获取最佳参数值
 
 #用训练集对模型进行训练
 reg.fit(x_train,y_train)
